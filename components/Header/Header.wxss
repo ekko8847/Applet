@@ -1,0 +1,18 @@
+/* components/Header/Header.wxss */
+.header .title{
+  color: #999;
+  line-height: 80rpx;
+}
+.header .headerText{
+  display: flex;
+  justify-content: space-between;
+}
+.header .headerText .textRight{
+  width: 150rpx;
+  height: 60rpx;
+  border: 1px solid #aaa;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+}

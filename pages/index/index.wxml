@@ -1,0 +1,87 @@
+<!--pages/index/index.wxml-->
+<view class="indexContainer">
+  <!-- 轮播图结构 -->
+  <swiper class="banner" indicator-dots indicator-active-color="red">
+    <!-- 
+      wx:for遍历的时候，不需要写item和index 默认每一项都会取名叫item，下标叫index
+      wx:key 它在使用的时候只能拿到遍历的这个数组，第一层对象当中的东西，不需要写item.id，只需要写id就可以
+      上面这样的wx:for用法只适用于一层循环遍历，多层循环item和index就重复了，需要自己重新制定
+     -->
+    <swiper-item wx:for="{{bannerList}}" wx:key="targetId" class="bannerItem">
+      <image class="bannerImg" src="{{item.pic}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- nav导航布局 -->
+  <view class="navList">
+    <view class="navItem">
+      <text class="iconfont icon-meirituijian"></text>
+      <text class="navText">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-gedan1"></text>
+      <text class="navText">歌单</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-paihangbang"></text>
+      <text class="navText">排行榜</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text class="navText">电台</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-zhiboguankanliangbofangsheyingshexiangjixianxing"></text>
+      <text class="navText">直播</text>
+    </view>
+  </view>
+
+  <!-- 推荐歌曲 -->
+  <view class="recommend">
+    <!-- <view class="header">
+      <view class="title">推荐歌曲</view>
+      <view class="headerText">
+        <text class="textLeft">为你精心推荐</text>
+        <text class="textRight">查看更多</text>
+      </view>
+    </view> -->
+    <Header title="推荐歌曲" content="为你精心推荐"></Header>
+
+    <!-- 使用 scroll-view
+    1、切记给高度
+    2、标示是横向滚动还是竖向滚动scroll-x
+    3、开启flex布局enable-flex-->
+    <scroll-view class="recommendScroll" scroll-x enable-flex>
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+        <image class="itemImg" src="{{item.picUrl}}"></image>
+        <text class="itemText">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 排行榜 -->
+  <view class="rank">
+    <!-- <view class="header">
+      <view class="title">排行榜</view>
+      <view class="headerText">
+        <text class="textLeft">热歌风向标</text>
+        <text class="textRight">查看更多</text>
+      </view>
+    </view> -->
+    <Header title="排行榜" content="热歌风向标"></Header>
+    <swiper class="rankSwiper" previous-margin="40rpx" next-margin="50rpx">
+      <!-- item默认要占一屏 -->
+      <swiper-item wx:for="{{rankList}}" wx:key="id" wx:for-item="rank" wx:for-index="index" class="swiperItem">
+        <!-- main才是真正的内容区域 -->
+        <view class="main">
+          <view class="mainTitle">{{rank.name}}</view>
+          <view class="mainItem" wx:for="{{rank.songList}}" wx:key="id" wx:for-item="song" wx:for-index="index1">
+            <image class="songImg" src="{{song.al.picUrl}}"></image>
+            <text class="count">{{index1+1}}</text>
+            <text class="songName">{{song.name}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
