@@ -1,2 +1,40 @@
 <!--pages/video/video.wxml-->
-<text>pages/video/video.wxml</text>
+<view class="videoContainer">
+  <!-- 视频头部 -->
+  <view class="header">
+    <image src="../../static/images/video/video.jpg"></image>
+    <text class="search">搜索音乐</text>
+    <image src="../../static/images/logo.png"></image>
+  </view>
+  <!-- 视频的nav导航 -->
+  <scroll-view 
+    class="navScroll" 
+    enable-flex 
+    scroll-x 
+    scroll-with-animation
+    scroll-into-view="{{'scroll' + navId}}">
+    <!-- scroll-into-view的值必须和下面子项的id对应，和谁的id值对应，那么谁就在第一项 
+    之前我们view当中通过id，把当前项的id的值传递到回调函数当中
+    而现在id属性不再是我们传递的属性了，而是要和上面scroll-into-view去配合
+    那么我们现在就得再想另外一个办法把当年咱们的当前项id值传递给回调函数
+    这里我们选择使用data-id去传递
+    -->
+    <view 
+      bindtap="changeNav"
+      id="{{'scroll' + item.id}}"
+      data-id="{{item.id}}"
+      class="navItem {{navId === item.id && 'active'}}" 
+      wx:for="{{navList}}" 
+      wx:key="id">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <!-- 视频列表 -->
+  <scroll-view class="videoScroll" enable-flex scroll-y>
+    <view class="videoItem" wx:for="{{videoList}}" wx:key="vid">
+      <video class="video" src="{{item.urlInfo.url}}"></video>
+    </view>
+  </scroll-view>
+</view>
+

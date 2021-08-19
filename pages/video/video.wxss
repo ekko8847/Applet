@@ -1,1 +1,72 @@
 /* pages/video/video.wxss */
+
+/* 头部 */
+.videoContainer{
+  height: 100%;
+}
+
+.videoContainer .header{
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 10rpx;
+}
+
+.videoContainer .header image{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.videoContainer .header .search{
+  height: 60rpx;
+  flex:1;  
+  /*
+  flex:1 ====>  flex-grow:1;  flex-shrink: 0; flex-basis: auto;
+  flex-grow: 1; 把剩余的空间全部给search*/
+  border: 1px solid #aaa;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color:red;
+  margin: 0 20rpx;
+}
+
+
+/* nav导航 */
+.videoContainer .navScroll{
+  height: 60rpx;
+  display: flex;
+  padding-left: 20rpx;
+}
+.videoContainer .navScroll .navItem{
+  font-size: 28rpx;
+  margin-right: 50rpx;
+  line-height: 60rpx;
+  white-space: nowrap;
+  /* border-bottom: 1px solid red; */
+}
+.videoContainer .navScroll .navItem.active{
+  border-bottom: 1px solid red;
+}
+
+/* 视频列表 */
+.videoContainer .videoScroll{
+  padding-top: 10rpx;
+  height: calc(100vh - 140rpx);
+  /* calc() 可以实现计算     屏幕的高度 - （header+nav）的高度*/
+}
+
+.videoContainer .videoScroll .videoItem{
+  padding: 0 20rpx;
+}
+
+.videoContainer .videoScroll .videoItem .video{
+  width: 100%;
+  height: 360rpx;
+  border-radius: 30rpx;
+}
+
+
+
+
+
